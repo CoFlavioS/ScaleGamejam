@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 37bc6c7a7cf9e7a449668cd3926ac8e5
+guid: 2a3c041a52d139f4884474f0d4fb1ca9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9185039355657243952
-    second: TestTiles_0
+      213: 7712763825578709399
+    second: Wall-Stone_03-64x64_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestTiles_0
+      name: Wall-Stone_03-64x64_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 192
-        height: 128
+        width: 512
+        height: 384
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03dcee921a0d77f70800000000000000
-      internalID: 9185039355657243952
+      spriteID: 7911a1cd5dd390b60800000000000000
+      internalID: 7712763825578709399
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TestTiles_0: 9185039355657243952
+      Wall-Stone_03-64x64_0: 7712763825578709399
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

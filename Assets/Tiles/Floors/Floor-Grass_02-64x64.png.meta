@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 37bc6c7a7cf9e7a449668cd3926ac8e5
+guid: 448aed6c01d373e4684965c1b2149260
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9185039355657243952
-    second: TestTiles_0
+      213: -8941437051119853976
+    second: Floor-Grass_02-64x64_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestTiles_0
+      name: Floor-Grass_02-64x64_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 192
-        height: 128
+        width: 512
+        height: 384
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03dcee921a0d77f70800000000000000
-      internalID: 9185039355657243952
+      spriteID: 86e1c723062a9e380800000000000000
+      internalID: -8941437051119853976
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TestTiles_0: 9185039355657243952
+      Floor-Grass_02-64x64_0: -8941437051119853976
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
