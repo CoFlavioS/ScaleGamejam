@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -45,6 +46,10 @@ public class PlayerController : MonoBehaviour
             {
                 this.transform.position = newPos;
             }
+            else if (!col.CompareTag("Wall"))
+            {
+                this.transform.position = newPos;
+            }
         }
     }
 
@@ -64,7 +69,7 @@ public class PlayerController : MonoBehaviour
                     if ((i != 0 || j != 0))
                     {
                         col = Physics2D.OverlapPoint(this.transform.position + new Vector3(i, j));
-                        // Debug.DrawLine(this.transform.position, this.transform.position + new Vector3(i, j), col == null ? Color.green : Color.red, 2);
+                        Debug.DrawLine(this.transform.position, this.transform.position + new Vector3(i, j), col == null ? Color.green : Color.red, 2);
                     }
                     j++;
                 }
@@ -73,10 +78,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(col == null)
-        {
-            this.transform.localScale += (Vector3.right * sizeVar + Vector3.up * sizeVar);
-        }
+        this.transform.localScale += (Vector3.right * sizeVar + Vector3.up * sizeVar);
     }
 
     Collider2D CanMove(Vector2 destination, int scaleVar)
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if(scaleVar == 1)
         {
             col = Physics2D.OverlapPoint(destination);
-            //Debug.DrawLine(this.transform.position, destination, col == null ? Color.green : Color.red, 2);
+            Debug.DrawLine(this.transform.position, destination, col == null ? Color.green : Color.red, 2);
         }
         else if(scaleVar == 3)
         {
@@ -105,7 +107,6 @@ public class PlayerController : MonoBehaviour
                     check = destination + Vector2.up * i + Vector2.right * moveDir.x;
                 }
                 col = Physics2D.OverlapPoint(check);
-                /*
                 if (moveDir.x == 0)
                 {
                     Debug.DrawLine(destination + Vector2.right * i, check, col == null ? Color.green : Color.red, 2);
@@ -114,7 +115,6 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.DrawLine(destination + Vector2.up * i, check, col == null ? Color.green : Color.red, 2);
                 }
-                */
                 i++;
             }
         }
