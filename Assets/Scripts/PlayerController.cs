@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     void Update()
     {
+        
         Vector2Int moveToDirection = Vector2Int.zero;
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -51,6 +52,13 @@ public class PlayerController : MonoBehaviour
                 this.transform.position = newPos;
             }
         }
+
+        UpdateDirectorValues();
+    }
+
+    void UpdateDirectorValues()
+    {
+        Director.PlayerPosition.Set(this.transform.position.x, this.transform.position.y);
     }
 
     void ChangeSize(int sizeVar)
