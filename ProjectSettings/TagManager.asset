@@ -49,6 +49,12 @@ TagManager:
   - name: Suelo
     uniqueID: 279190097
     locked: 0
+  - name: Consumibles
+    uniqueID: 2331937655
+    locked: 0
+  - name: Player
+    uniqueID: 2126722215
+    locked: 0
   - name: Paredes
     uniqueID: 2721848561
     locked: 0
