@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class ObjetoActivado : MonoBehaviour
 {
     public abstract void Activar();
+    public abstract void Desactivar();
 }

@@ -5,8 +5,7 @@ using UnityEngine.Serialization;
 
 public class ObjetoActivador : MonoBehaviour
 {
-    [SerializeField]
-    private ObjetoActivado oA;
+    public ObjetoActivado oA;
     void Start()
     {
         

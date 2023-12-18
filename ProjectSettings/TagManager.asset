@@ -58,6 +58,9 @@ TagManager:
   - name: Player
     uniqueID: 2126722215
     locked: 0
+  - name: Enemigos
+    uniqueID: 3662769061
+    locked: 0
   - name: Paredes
     uniqueID: 2721848561
     locked: 0

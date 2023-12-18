@@ -39,12 +39,9 @@ public class Trampa : ObjetoActivado
         }
         t.localScale = new Vector3(inicial.x+cambioX,inicial.y+cambioY,1f);
     }
-    public float GetXInicial()
+    public override void Desactivar()
     {
-        return xInicial;
-    }
-    public float GetYInicial()
-    {
-        return yInicial;
+        activada= false;
+        t.localScale = new Vector3(xInicial,yInicial,1f);
     }
 }
