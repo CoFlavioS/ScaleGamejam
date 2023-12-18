@@ -8,10 +8,14 @@ public class Trampa : ObjetoActivado
     public float cambioY;
     private Transform t;
     private bool activada;
+    private float xInicial;
+    private float yInicial;
     void Start()
     {
         t = this.GetComponent<Transform>();
         activada = false;
+        xInicial = t.localScale.x;
+        yInicial = t.localScale.y;
     }
     public override void Activar() {
         if (!activada)
@@ -34,5 +38,13 @@ public class Trampa : ObjetoActivado
             tiempo += 0.01f;
         }
         t.localScale = new Vector3(inicial.x+cambioX,inicial.y+cambioY,1f);
+    }
+    public float GetXInicial()
+    {
+        return xInicial;
+    }
+    public float GetYInicial()
+    {
+        return yInicial;
     }
 }

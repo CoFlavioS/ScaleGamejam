@@ -65,5 +65,6 @@ public class SizeChanger : MonoBehaviour
         }
 
         player.localScale = (Vector3.up + Vector3.right) * Mathf.RoundToInt(player.localScale.x);
+        gameObject.SetActive(false);
     }
 }
