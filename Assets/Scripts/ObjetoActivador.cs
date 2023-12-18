@@ -18,5 +18,13 @@ public class ObjetoActivador : MonoBehaviour
     void OnTriggerEnter2D(Collider2D c)
     {
         oA.Activar();
+        if (gameObject.tag == "Key")
+        {
+            gameObject.SetActive(false);
+        }
+        else if (gameObject.tag == "Button")
+        {
+            //Cambiar al sprite del votón pulsado
+        }
     }
 }

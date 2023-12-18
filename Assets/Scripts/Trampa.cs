@@ -7,14 +7,20 @@ public class Trampa : ObjetoActivado
     public float cambioX;
     public float cambioY;
     private Transform t;
+    private bool activada;
     void Start()
     {
         t = this.GetComponent<Transform>();
+        activada = false;
     }
     public override void Activar() {
-        Vector3 inicial = t.localScale;
-        Vector3 actual= t.localScale;
-        StartCoroutine(CambiarEscala(inicial,actual, cambioX, cambioY, 0.1f));
+        if (!activada)
+        {
+            Vector3 inicial = t.localScale;
+            Vector3 actual = t.localScale;
+            StartCoroutine(CambiarEscala(inicial, actual, cambioX, cambioY, 0.1f));
+        }
+        activada = true;
     }
     private IEnumerator CambiarEscala(Vector3 inicial,Vector3 actual,float cambioX, float cambioY, float duracion)
     {
