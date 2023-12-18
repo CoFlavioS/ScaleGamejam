@@ -7,7 +7,7 @@ public class CamaraController : MonoBehaviour
     [SerializeField]
     private GameObject player;
     [SerializeField]
-    private GameObject camara;
+    private Camera camara;
     void Start()
     {
         
