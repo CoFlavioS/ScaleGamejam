@@ -10,28 +10,13 @@ public class SizeChanger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(
-                this.name +
-                collision.gameObject.transform.localScale.x +
-                " == " +
-                3f +
-                " is " + 
-                (collision.gameObject.transform.localScale.x == 3f) +
-                "\n" +
-                collision.gameObject.transform.localScale.x +
-                " == " +
-                1f +
-                " is " +
-                (collision.gameObject.transform.localScale.x == 1f));
             if (collision.gameObject.transform.localScale.x == 3 && !grow)
             {
                 ChangeSize(collision.transform);
-                Debug.Log("Shrink");
             }
             else if(collision.gameObject.transform.localScale.x == 1 && grow)
             {
                 ChangeSize(collision.transform);
-                Debug.Log("Grow");
             }
         }
     }
@@ -52,7 +37,7 @@ public class SizeChanger : MonoBehaviour
                     if ((i != 0 || j != 0))
                     {
                         col = Physics2D.OverlapPoint(player.position + new Vector3(i, j));
-                        Debug.DrawLine(player.position, player.position + new Vector3(i, j), col == null ? Color.green : Color.red, 2);
+                        // Debug.DrawLine(player.position, player.position + new Vector3(i, j), col == null ? Color.green : Color.red, 2);
                     }
                     j++;
                 }
@@ -72,7 +57,6 @@ public class SizeChanger : MonoBehaviour
         float originalScale = player.localScale.x;
         float a = player.localScale.x;
         float b = (originalScale + scaleChange);
-        Debug.Log("Wiiii");
 
         while (!Mathf.Approximately(player.localScale.x, originalScale + scaleChange))
         {
