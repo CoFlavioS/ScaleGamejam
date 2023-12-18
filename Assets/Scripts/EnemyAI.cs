@@ -8,36 +8,39 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] 
     int CHASE_RANGE;
 
-    bool Chasing = false;
+    BoxCollider2D BoxCollider;
 
-    public enum EnemyState 
+    bool Chasing = false;    
+
+    public void Start()
     {
-        WANDER,
-        CHASE
+        BoxCollider = GetComponent<BoxCollider2D>();
+        BoxCollider.size *= 2 * CHASE_RANGE;
     }
 
     // Update is called once per frame
     void Update()
     {   
-        if (!Chasing)
-        {
-            if (Director.PlayerInRange(CHASE_RANGE))
-                Chasing = true;
-        } else {
-            Chase();
-        }
 
-        if (Director.PlayerInRange(1))
-        {
-            //GameOver
-        }
-        UpdateDirectorValues();
     }
 
-    void UpdateDirectorValues()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Director.EnemyPosition.Set(this.transform.position.x, this.transform.position.y);
-    }
+        Debug.Log("Enter");
+        if (other.tag == "Player")
+        {
+            Debug.Log("Player Detected!!");
+            if (!Chasing)
+            {
+                Chasing = true;
+                BoxCollider.size = new Vector2(4, 4);
+                Chase();
+            } else {
+                //GameOver
+            }
+        }
+    }   
+
 
     void Chase()
     {

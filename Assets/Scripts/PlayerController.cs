@@ -53,12 +53,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        UpdateDirectorValues();
-    }
-
-    void UpdateDirectorValues()
-    {
-        Director.PlayerPosition.Set(this.transform.position.x, this.transform.position.y);
     }
 
     void ChangeSize(int sizeVar)
