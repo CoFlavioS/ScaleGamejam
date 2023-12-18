@@ -11,16 +11,13 @@ public class Director : MonoBehaviour
     [SerializeField]
     public static Vector2 EnemyPosition;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool PlayerInRange(int range)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            return (
+            PlayerPosition.x < (EnemyPosition.x + 1) &&
+            PlayerPosition.x > (EnemyPosition.x - 1) &&
+            PlayerPosition.y < (EnemyPosition.y + 1) &&
+            PlayerPosition.y > (EnemyPosition.y - 1));
     }
 
 }
