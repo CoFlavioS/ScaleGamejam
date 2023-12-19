@@ -25,7 +25,7 @@ public class Node
 
     public void CalculateH(Node GoalNode)
     {
-        H = Mathf.Abs(position.x - GoalNode.position.x) + Mathf(position.y - GoalNode.position.y); 
+        H = Mathf.Abs(position.x - GoalNode.position.x) + Mathf.Abs(position.y - GoalNode.position.y); 
     }
 
 }
@@ -45,7 +45,7 @@ public class Pathfinder : MonoBehaviour
         GeneratePath(StartNode, GoalNode);
         while (CurrentNode.parent != null)
         {
-            Stack.Push(CurrentNode);
+            steps.Push(CurrentNode);
             CurrentNode = CurrentNode.parent;
         }
         return steps;
@@ -59,44 +59,41 @@ public class Pathfinder : MonoBehaviour
         ClosedList = new Dictionary<Vector2Int, Node>();
 
         StartNode.F = 0;
-        OpenList.Add(StartNode);
+        OpenList.Add(StartNode.position, StartNode);
 
-        while(OpenList.Count != 0)
+        while (OpenList.Count != 0)
         {
             CurrentNode = SelectBestNode();
             OpenList.Remove(CurrentNode.position);
             Dictionary<Node, int> neighbours = GetNeighbours(CurrentNode);
-            foreach (Node neighbour in neighbours)
-                neighbour.parent = CurrentNode;
-                if (neighbour.position = GoalNode.position)
+            foreach (KeyValuePair<Node, int> neighbour in neighbours)
+            {
+                neighbour.Key.parent = CurrentNode;
+                if (neighbour.Key.position == GoalNode.position)
                     return;
-                neighbour.G = CurrentNode.G + 10;
-                neighbour.CalculateH();
-                neighbour.CalculateF();
-                if (OpenList.Contains(neighbour.position) && neighbour.F > OpenList[neighbour.position].F)
-                        continue;
-                }
-                if (ClosedList.Contains(neighbour.position) && neighbour.F > ClosedList[neighbour.position].F)
-                        continue;
+                neighbour.Key.G = CurrentNode.G + 10;
+                neighbour.Key.CalculateH(GoalNode);
+                neighbour.Key.CalculateF();
+                if (OpenList.ContainsValue(neighbour.Key) && neighbour.Key.F > OpenList[neighbour.Key.position].F)
+                    continue;
+                if (ClosedList.ContainsValue(neighbour.Key) && neighbour.Key.F > ClosedList[neighbour.Key.position].F)
+                    continue;
                 else
-                    OpenList.Add(neighbour);
-            
-            ClosedList.Add(CurrentNode);
-            
+                    OpenList.Add(neighbour.Key.position, neighbour.Key);
+            }
+            ClosedList.Add(CurrentNode.position, CurrentNode);
         }
-
-
     }
 
     private Node SelectBestNode()
     {
         Node best = new Node(new Vector2Int(0, 0));
-        best.F = Int.MaxValue;
+        best.F = 1000000;
 
-        foreach (Node node in OpenList)
+        foreach (KeyValuePair<Vector2Int, Node> node in OpenList)
         {
-            if (node.F < best.F)
-                best = node;
+            if (node.Value.F < best.F)
+                best = node.Value;
         }
         return best;
     }
@@ -106,30 +103,25 @@ public class Pathfinder : MonoBehaviour
         Dictionary<Node, int> neighbours = new Dictionary<Node, int>();
 
         Node topN = new Node(new Vector2Int(node.position.x + 1, node.position.y));
-        topN.walkable = !walls.HasTile(new Vector3Int(topN.x, topN.y, 0));
-        if (topN.walkable && !ClosedList.Contains(topN.position))
-            neighbours.Add(topN);
+        topN.walkable = !walls.HasTile(new Vector3Int(topN.position.x, topN.position.y, 0));
+        if (topN.walkable && !ClosedList.ContainsKey(topN.position))
+            neighbours.Add(topN, 0);
 
         Node bottomN = new Node(new Vector2Int(node.position.x - 1, node.position.y));
-        bottomN.walkable = !walls.HasTile(new Vector3Int(bottomN.x, bottomN.y, 0));
-        if (bottomN.walkable && !ClosedList.Contains(bottomN.position))
-            neighbours.Add(bottomN);
+        bottomN.walkable = !walls.HasTile(new Vector3Int(bottomN.position.x, bottomN.position.y, 0));
+        if (bottomN.walkable && !ClosedList.ContainsKey(bottomN.position))
+            neighbours.Add(bottomN, 2);
 
         Node leftN = new Node(new Vector2Int(node.position.x, node.position.y - 1));
-        leftN.walkable = !walls.HasTile(new Vector3Int(leftN.x, leftN.y, 0))
-        if (leftN.walkable && !ClosedList.Contains(leftN.position))
-            neighbours.Add(leftN);
+        leftN.walkable = !walls.HasTile(new Vector3Int(leftN.position.x, leftN.position.y, 0));
+        if (leftN.walkable && !ClosedList.ContainsKey(leftN.position))
+            neighbours.Add(leftN, 1);
 
         Node rightN = new Node(new Vector2Int(node.position.x, node.position.y + 1));
-        rightN.walkable = !walls.HasTile(new Vector3Int(rightN.x, rightN.y, 0));
-        if (rightN.walkable && !ClosedList.Contains(rightN.position))
-            neighbours.Add(rightN);
+        rightN.walkable = !walls.HasTile(new Vector3Int(rightN.position.x, rightN.position.y, 0));
+        if (rightN.walkable && !ClosedList.ContainsKey(rightN.position))
+            neighbours.Add(rightN, 3);
         
-        return neighbors;
-
+        return neighbours;
     }
-
-
-
-
 }

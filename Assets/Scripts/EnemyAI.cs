@@ -7,6 +7,8 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] 
     int CHASE_RANGE;
+    [Range(1, 4)]
+    float repeatRate;
 
     BoxCollider2D BoxCollider;
 
@@ -14,6 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     Pathfinder Pathfinder;
 
+    [SerializeField]
     GameObject Player;
 
     public void Start()
@@ -21,12 +24,6 @@ public class EnemyAI : MonoBehaviour
         BoxCollider = GetComponent<BoxCollider2D>();
         BoxCollider.size *= 2 * CHASE_RANGE;
         Pathfinder = GetComponent<Pathfinder>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {   
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -39,6 +36,7 @@ public class EnemyAI : MonoBehaviour
             {
                 Chasing = true;
                 BoxCollider.size = new Vector2(4, 4);
+                InvokeRepeating("Chase", 0f, repeatRate);
                 Chase();
             } else {
                 //GameOver
@@ -52,9 +50,8 @@ public class EnemyAI : MonoBehaviour
         Node StartNode = new Node(new Vector2Int((int)transform.position.x, (int)transform.position.y));
         Node GoalNode = new Node(new Vector2Int((int)Player.transform.position.x, (int)Player.transform.position.y));
         Stack<Node> steps = Pathfinder.GetSteps(StartNode, GoalNode);
-        Vector2Int nextStep = steps.PoP().position;
+        Vector2Int nextStep = steps.Pop().position;
         this.transform.position = new Vector3((float)nextStep.x, (float)nextStep.y, 0f);
-        sleep(1);
     }
 }
 
