@@ -7,6 +7,6 @@ public class Probar : MonoBehaviour
     public static GameController Instance;
     void Update()
     {
-        GameController.Instance.ReiniciarSala(5); 
+        GameController.Instance.ReiniciarSala(GameController.Instance.checkpoint); 
     }
 }

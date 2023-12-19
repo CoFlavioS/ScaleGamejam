@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
             collider.gameObject.SetActive(false);
         }
     }
-    int GetSala()
+    public int GetSala()
     {
         return sala;
     }

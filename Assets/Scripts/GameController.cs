@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : Singleton<GameController>
 {
     [SerializeField]
-    private GameObject player;
+    private PlayerController player;
     public List<Objeto> sala1;
     public List<Objeto> sala2;
     public List<Objeto> sala3;
@@ -15,6 +15,11 @@ public class GameController : Singleton<GameController>
     public int checkpoint;
     void Start()
     {
+    }
+    void Update()
+    {
+        checkpoint = player.GetSala();
+        UnityEngine.Debug.Log(checkpoint);
     }
     public void ReiniciarSala(int checkpoint)
     {
@@ -94,7 +99,7 @@ public class GameController : Singleton<GameController>
                 }
                 sala6[i].Reset();
             }
-            player.transform.position = new Vector2(56,51.5f);
+            player.transform.position = new Vector2(56,-51.5f);
             player.transform.localScale = new Vector3(1, 1, 1);
         }     
     }
