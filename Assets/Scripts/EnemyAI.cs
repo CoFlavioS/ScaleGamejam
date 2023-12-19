@@ -12,10 +12,15 @@ public class EnemyAI : MonoBehaviour
 
     bool Chasing = false;    
 
+    Pathfinder Pathfinder;
+
+    GameObject Player;
+
     public void Start()
     {
         BoxCollider = GetComponent<BoxCollider2D>();
         BoxCollider.size *= 2 * CHASE_RANGE;
+        Pathfinder = GetComponent<Pathfinder>();
     }
 
     // Update is called once per frame
@@ -44,7 +49,12 @@ public class EnemyAI : MonoBehaviour
 
     void Chase()
     {
-        //go to director.playerposition
+        Node StartNode = new Node(new Vector2Int((int)transform.position.x, (int)transform.position.y));
+        Node GoalNode = new Node(new Vector2Int((int)Player.transform.position.x, (int)Player.transform.position.y));
+        Stack<Node> steps = Pathfinder.GetSteps(StartNode, GoalNode);
+        Vector2Int nextStep = steps.PoP().position;
+        this.transform.position = new Vector3((float)nextStep.x, (float)nextStep.y, 0f);
+        sleep(1);
     }
 }
 
