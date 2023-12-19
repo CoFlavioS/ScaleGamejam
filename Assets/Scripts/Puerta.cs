@@ -11,7 +11,7 @@ public class Puerta : ObjetoActivado
     {
         gameObject.SetActive(false);
     }
-    public override void Desactivar()
+    public override void Reset()
     {
         gameObject.SetActive(true);
     }
