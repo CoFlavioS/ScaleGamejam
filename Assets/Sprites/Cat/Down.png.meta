@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 32ede05ab86015749945b5baf1116350
+guid: c18ba64fc43c4f34ea76234cc498c8de
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 56405453324043922
-    second: pixil-frame-0 (5)_0
+      213: 2912147235762990277
+    second: Down_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,29 +94,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixil-frame-0 (5)_0
+      name: Down_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 8
-        width: 28
-        height: 16
+        x: 3
+        y: 1
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29646c0067468c000800000000000000
-      internalID: 56405453324043922
+      spriteID: 5cce9415b760a6820800000000000000
+      internalID: 2912147235762990277
       vertices: []
       indices: 
       edges: []
@@ -141,7 +129,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pixil-frame-0 (5)_0: 56405453324043922
+      Down_0: 2912147235762990277
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
