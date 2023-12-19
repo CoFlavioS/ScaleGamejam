@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ObjetoActivador : MonoBehaviour
+public class ObjetoActivador : Objeto
 {
     public ObjetoActivado oA;
     void Start()
@@ -23,7 +23,18 @@ public class ObjetoActivador : MonoBehaviour
         }
         else if (gameObject.tag == "Button")
         {
-            //Cambiar al sprite del votón pulsado
+            //Cambiar al sprite del botón pulsado
+        }
+    }
+    public override void Reset()
+    {
+        if (gameObject.tag == "Key")
+        {
+            gameObject.SetActive(true);
+        }
+        else if (gameObject.tag == "Button")
+        {
+            //Cambiar al sprite del botón pulsado
         }
     }
 }

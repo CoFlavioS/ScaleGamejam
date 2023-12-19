@@ -39,7 +39,7 @@ public class Trampa : ObjetoActivado
         }
         t.localScale = new Vector3(inicial.x+cambioX,inicial.y+cambioY,1f);
     }
-    public override void Desactivar()
+    public override void Reset()
     {
         activada= false;
         t.localScale = new Vector3(xInicial,yInicial,1f);

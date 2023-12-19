@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ObjetoActivado : Objeto
+public abstract class Objeto : MonoBehaviour
 {
-    public abstract void Activar();
+    public abstract void Reset();
 }

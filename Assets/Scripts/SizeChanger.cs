@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SizeChanger : MonoBehaviour
+public class SizeChanger : Objeto
 {
     [SerializeField] bool grow;
 
@@ -66,5 +66,9 @@ public class SizeChanger : MonoBehaviour
 
         player.localScale = (Vector3.up + Vector3.right) * Mathf.RoundToInt(player.localScale.x);
         gameObject.SetActive(false);
+    }
+    public override void Reset()
+    {
+        gameObject.SetActive(true);
     }
 }
