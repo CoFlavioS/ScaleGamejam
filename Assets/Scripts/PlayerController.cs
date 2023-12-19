@@ -6,6 +6,7 @@ using static UnityEditor.PlayerSettings;
 
 public class PlayerController : MonoBehaviour
 {
+    private int sala = 1;
     void Update()
     {
         
@@ -122,5 +123,18 @@ public class PlayerController : MonoBehaviour
         }
 
         return col;
+    }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Checkpoint")
+        {
+            UnityEngine.Debug.Log("Nuevo checkpoint");
+            sala++;
+            collider.gameObject.SetActive(false);
+        }
+    }
+    int GetSala()
+    {
+        return sala;
     }
 }

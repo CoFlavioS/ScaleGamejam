@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - Button
   - Key
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
