@@ -54,6 +54,8 @@ public class SizeChanger : Objeto
 
     IEnumerator ScaleAnim(Transform player, float scaleChange)
     {
+        player.gameObject.GetComponent<PlayerController>().canWalk = false;
+
         float originalScale = player.localScale.x;
         float a = player.localScale.x;
         float b = (originalScale + scaleChange);
@@ -66,6 +68,7 @@ public class SizeChanger : Objeto
 
         player.localScale = (Vector3.up + Vector3.right) * Mathf.RoundToInt(player.localScale.x);
         gameObject.SetActive(false);
+        player.gameObject.GetComponent<PlayerController>().canWalk = true;
     }
     public override void Reset()
     {

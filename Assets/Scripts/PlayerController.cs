@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [Range(1, 6)] public int waitToIdle;
     private int sala = 1;
     private Animator anim;
+    public bool canWalk;
 
     Coroutine active;
 
@@ -16,49 +17,52 @@ public class PlayerController : MonoBehaviour
     {
         anim = gameObject.GetComponent<Animator>();
         active = null;
+        canWalk = true;
     }
     void Update()
     {
-
         Vector2Int moveToDirection = Vector2Int.zero;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if(canWalk)
         {
-            moveToDirection.y = 1;
-            if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Arriba"))
-                anim.SetTrigger("up");
-            BackToIdle();
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            moveToDirection.y = -1;
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Abajo"))
-                anim.SetTrigger("down");
-            BackToIdle();
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            moveToDirection.x = 1;
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Derecha"))
-                anim.SetTrigger("right");
-            BackToIdle();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            moveToDirection.x = -1;
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Izquierda"))
-                anim.SetTrigger("left");
-            BackToIdle();
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                moveToDirection.y = 1;
+                if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Arriba"))
+                    anim.SetTrigger("up");
+                BackToIdle();
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                moveToDirection.y = -1;
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Abajo"))
+                    anim.SetTrigger("down");
+                BackToIdle();
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                moveToDirection.x = 1;
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Derecha"))
+                    anim.SetTrigger("right");
+                BackToIdle();
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                moveToDirection.x = -1;
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Izquierda"))
+                    anim.SetTrigger("left");
+                BackToIdle();
 
-        }
+            }
 
-        if (Input.GetKeyDown(KeyCode.Z) && this.transform.localScale.x < 3)
-        {
-            ChangeSize(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && this.transform.localScale.x > 1)
-        {
-            ChangeSize(-2);
+            if (Input.GetKeyDown(KeyCode.Z) && this.transform.localScale.x < 3)
+            {
+                ChangeSize(2);
+            }
+            else if (Input.GetKeyDown(KeyCode.X) && this.transform.localScale.x > 1)
+            {
+                ChangeSize(-2);
+            }
         }
 
         if (moveToDirection != Vector2Int.zero)
