@@ -23,10 +23,9 @@ public class Node
         F = G + H;
     }
 
-    public int CalculateH(Node GoalNode)
+    public void CalculateH(Node GoalNode)
     {
-        H = Mathf.Abs(position.x - GoalNode.position.x) + Mathf.Abs(position.y - GoalNode.position.y); 
-        return H;
+        H = Mathf.Abs(position.x - GoalNode.position.x) + Mathf.Abs(position.y - GoalNode.position.y);
     }
 
 }
@@ -43,24 +42,17 @@ public class Pathfinder : MonoBehaviour
     public Stack<Node> GetSteps(Node StartNode, Node GoalNode)
     {   
         Stack<Node> steps = new Stack<Node>();
-        Node node = GeneratePath(StartNode, GoalNode);
-        //Debug.Log("Current Node Parent" + node.parent.position.x + " " + node.parent.position.y);
-        //Debug.Log("Current Node" + node.position.x + " " + node.position.y);
-        while (node.parent != null)
+        GeneratePath(StartNode, GoalNode);
+        while (CurrentNode.parent != null)
         {
-            steps.Push(node);
-            node = node.parent;
+            steps.Push(CurrentNode);
+            CurrentNode = CurrentNode.parent;
         }
         return steps;
     }
 
-    private Node GeneratePath(Node StartNode, Node GoalNode)
-    {   
-
-        Debug.Log("Start Node" + StartNode.position.x + " " + StartNode.position.y);
-        Debug.Log("Goal Node" + GoalNode.position.x + " " + GoalNode.position.y);
-
-
+    private void GeneratePath(Node StartNode, Node GoalNode)
+    {
         OpenList = new Dictionary<Vector2Int, Node>();
         ClosedList = new Dictionary<Vector2Int, Node>();
 
@@ -70,48 +62,32 @@ public class Pathfinder : MonoBehaviour
         while (OpenList.Count != 0)
         {
             CurrentNode = SelectBestNode();
-            Debug.Log("Current Node" + CurrentNode.position.x + " " + CurrentNode.position.y);
             OpenList.Remove(CurrentNode.position);
             Dictionary<Node, int> neighbours = GetNeighbours(CurrentNode);
             foreach (KeyValuePair<Node, int> neighbour in neighbours)
             {
-                Debug.Log("Neighbour " + neighbour.Key.position.x + " " + neighbour.Key.position.y);
                 neighbour.Key.parent = CurrentNode;
                 if (neighbour.Key.position == GoalNode.position){
-                    Debug.Log("Goal");
-                    CurrentNode = neighbour.Key;
-                    return neighbour.Key;
+                    return;
                 }
-                else 
-                {
-                    neighbour.Key.G = CurrentNode.G + 10;
-                    neighbour.Key.CalculateH(GoalNode);
-                    neighbour.Key.CalculateF();
-                }
+                neighbour.Key.G = CurrentNode.G + 10;
+                neighbour.Key.CalculateH(GoalNode);
+                neighbour.Key.CalculateF();
 
-                if (OpenList.ContainsKey(neighbour.Key.position)){
-                    if(neighbour.Key.F > OpenList[neighbour.Key.position].F)
-                    {
-                        Debug.Log("There's a shorter path for this");
-                        continue;
-                    }
-                }
-                else if (ClosedList.ContainsKey(neighbour.Key.position)){
-                    if(neighbour.Key.F > ClosedList[neighbour.Key.position].F){
-                        Debug.Log("I already came here faster in other time");
-                        continue;
-                    }
-                }
-                else
+                if (OpenList.ContainsKey(neighbour.Key.position))
                 {
-                    Debug.Log("I have to visit this one");
+                    if(neighbour.Key.F < OpenList[neighbour.Key.position].F)
+                    {
+                        OpenList[neighbour.Key.position] = neighbour.Key;
+                    }
+                }
+                else if (!ClosedList.ContainsKey(neighbour.Key.position))
+                {
                     OpenList.Add(neighbour.Key.position, neighbour.Key);
                 }
             }
-            Debug.Log("Visited");
-            ClosedList.Add(CurrentNode.position, CurrentNode);
+            ClosedList[CurrentNode.position] = CurrentNode;
         }
-        return new Node(new Vector2Int(0,0));
     }
 
     private Node SelectBestNode()

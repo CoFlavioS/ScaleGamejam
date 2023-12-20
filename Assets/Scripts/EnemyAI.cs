@@ -6,13 +6,13 @@ public class EnemyAI : MonoBehaviour
 {
 
     [SerializeField] 
-    int CHASE_RANGE;
-    [Range(1, 4)]
-    float repeatRate;
+    Vector2Int CHASE_RANGE;
+    [Range(0.1f, 1)]
+    public float repeatRate;
 
     BoxCollider2D BoxCollider;
 
-    bool Chasing = false;    
+    bool Chasing;    
 
     Pathfinder Pathfinder;
 
@@ -22,15 +22,9 @@ public class EnemyAI : MonoBehaviour
     public void Start()
     {
         BoxCollider = GetComponent<BoxCollider2D>();
-        BoxCollider.size *= 2 * CHASE_RANGE;
+        BoxCollider.size = CHASE_RANGE;
         Pathfinder = GetComponent<Pathfinder>();
-    }
-
-    public void Update()
-    {
-        if (Chasing)
-            Chase();
-            
+        Chasing = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,8 +36,8 @@ public class EnemyAI : MonoBehaviour
             if (!Chasing)
             {
                 Chasing = true;
-                BoxCollider.size = new Vector2(4, 4);
-                Chase();
+                BoxCollider.size = new Vector2(1, 1);
+                InvokeRepeating("Chase", 0f, repeatRate);
             } else {
                 //GameOver
             }
@@ -53,6 +47,7 @@ public class EnemyAI : MonoBehaviour
 
     void Chase()
     {
+        Debug.Log("chaseStart");
         Node StartNode = new Node(new Vector2Int((int)transform.position.x, (int)transform.position.y));
         Node GoalNode = new Node(new Vector2Int((int)Player.transform.position.x, (int)Player.transform.position.y));
         Stack<Node> steps = Pathfinder.GetSteps(StartNode, GoalNode);
