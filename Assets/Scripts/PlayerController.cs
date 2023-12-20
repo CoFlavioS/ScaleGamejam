@@ -7,26 +7,42 @@ using static UnityEditor.PlayerSettings;
 public class PlayerController : MonoBehaviour
 {
     private int sala = 1;
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+    }
     void Update()
     {
-        
+
         Vector2Int moveToDirection = Vector2Int.zero;
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             moveToDirection.y = 1;
+            anim.SetTrigger("up");
+            StartCoroutine(contarTiempoIdle());
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             moveToDirection.y = -1;
+            anim.SetTrigger("down");
+            StartCoroutine(contarTiempoIdle());
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             moveToDirection.x = 1;
+            anim.SetTrigger("right");
+            StartCoroutine(contarTiempoIdle());
+
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             moveToDirection.x = -1;
+            anim.SetTrigger("left");
+            StartCoroutine(contarTiempoIdle());
+
         }
 
         if (Input.GetKeyDown(KeyCode.Z) && this.transform.localScale.x < 3)
@@ -53,7 +69,14 @@ public class PlayerController : MonoBehaviour
                 this.transform.position = newPos;
             }
         }
+    }
 
+    IEnumerator contarTiempoIdle()
+    {
+        if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        yield return new WaitForSeconds(3f);
+
+        anim.SetTrigger("idle");
     }
 
     void ChangeSize(int sizeVar)
