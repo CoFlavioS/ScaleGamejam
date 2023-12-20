@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            Debug.Log("A tu casa");
+            //GameOver
         }
     }
 }
