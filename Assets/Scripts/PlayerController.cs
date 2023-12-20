@@ -6,12 +6,16 @@ using static UnityEditor.PlayerSettings;
 
 public class PlayerController : MonoBehaviour
 {
+    [Range(1, 6)] public int waitToIdle;
     private int sala = 1;
     private Animator anim;
+
+    Coroutine active;
 
     private void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        active = null;
     }
     void Update()
     {
@@ -21,27 +25,30 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             moveToDirection.y = 1;
-            anim.SetTrigger("up");
-            StartCoroutine(contarTiempoIdle());
+            if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Arriba"))
+                anim.SetTrigger("up");
+            BackToIdle();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             moveToDirection.y = -1;
-            anim.SetTrigger("down");
-            StartCoroutine(contarTiempoIdle());
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Abajo"))
+                anim.SetTrigger("down");
+            BackToIdle();
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             moveToDirection.x = 1;
-            anim.SetTrigger("right");
-            StartCoroutine(contarTiempoIdle());
-
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Derecha"))
+                anim.SetTrigger("right");
+            BackToIdle();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             moveToDirection.x = -1;
-            anim.SetTrigger("left");
-            StartCoroutine(contarTiempoIdle());
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Izquierda"))
+                anim.SetTrigger("left");
+            BackToIdle();
 
         }
 
@@ -71,12 +78,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void BackToIdle()
+    {
+        if(active != null)
+        {
+            StopCoroutine(active);
+            Debug.Log("reset");
+        }
+        active = StartCoroutine(contarTiempoIdle());
+    }
+
     IEnumerator contarTiempoIdle()
     {
-        if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         yield return new WaitForSeconds(3f);
-
         anim.SetTrigger("idle");
+        Debug.Log("Trigger");
     }
 
     void ChangeSize(int sizeVar)
