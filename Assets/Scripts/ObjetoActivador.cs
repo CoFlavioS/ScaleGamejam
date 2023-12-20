@@ -6,13 +6,14 @@ using UnityEngine.Serialization;
 public class ObjetoActivador : Objeto
 {
     public ObjetoActivado oA;
+    public bool activoAlPrincipio;
     void Start()
     {
-        
+
     }
     void Update()
     {
-        
+
     }
     void OnTriggerEnter2D(Collider2D c)
     {
@@ -30,7 +31,10 @@ public class ObjetoActivador : Objeto
     {
         if (gameObject.tag == "Key")
         {
-            gameObject.SetActive(true);
+            if (activoAlPrincipio == false)
+            {
+                gameObject.SetActive(false);
+            }
         }
         else if (gameObject.tag == "Button")
         {
