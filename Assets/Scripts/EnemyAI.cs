@@ -26,6 +26,13 @@ public class EnemyAI : MonoBehaviour
         Pathfinder = GetComponent<Pathfinder>();
     }
 
+    public void Update()
+    {
+        if (Chasing)
+            Chase();
+            
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Enter");
@@ -36,7 +43,6 @@ public class EnemyAI : MonoBehaviour
             {
                 Chasing = true;
                 BoxCollider.size = new Vector2(4, 4);
-                InvokeRepeating("Chase", 0f, repeatRate);
                 Chase();
             } else {
                 //GameOver

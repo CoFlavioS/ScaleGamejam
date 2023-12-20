@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6675b5d39bd23d448b04085f7ab150a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitToIdle: 0
 --- !u!61 &507673589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1059,7 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CHASE_RANGE: 8
-  Player: {fileID: 0}
+  Player: {fileID: 507673585}
 --- !u!114 &773042983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9223,7 +9224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084fc59465780324dacbfb49466c122e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 507673588}
   sala1: []
   sala2: []
   sala3: []

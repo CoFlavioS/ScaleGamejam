@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         if(active != null)
         {
             StopCoroutine(active);
-            Debug.Log("reset");
+            //Debug.Log("reset");
         }
         active = StartCoroutine(contarTiempoIdle());
     }
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         anim.SetTrigger("idle");
-        Debug.Log("Trigger");
+        //Debug.Log("Trigger");
     }
 
     void ChangeSize(int sizeVar)

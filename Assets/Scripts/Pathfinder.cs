@@ -23,9 +23,10 @@ public class Node
         F = G + H;
     }
 
-    public void CalculateH(Node GoalNode)
+    public int CalculateH(Node GoalNode)
     {
         H = Mathf.Abs(position.x - GoalNode.position.x) + Mathf.Abs(position.y - GoalNode.position.y); 
+        return H;
     }
 
 }
@@ -42,18 +43,23 @@ public class Pathfinder : MonoBehaviour
     public Stack<Node> GetSteps(Node StartNode, Node GoalNode)
     {   
         Stack<Node> steps = new Stack<Node>();
-        GeneratePath(StartNode, GoalNode);
-        while (CurrentNode.parent != null)
+        Node node = GeneratePath(StartNode, GoalNode);
+        //Debug.Log("Current Node Parent" + node.parent.position.x + " " + node.parent.position.y);
+        //Debug.Log("Current Node" + node.position.x + " " + node.position.y);
+        while (node.parent != null)
         {
-            steps.Push(CurrentNode);
-            CurrentNode = CurrentNode.parent;
+            steps.Push(node);
+            node = node.parent;
         }
         return steps;
-
     }
 
-    private void GeneratePath(Node StartNode, Node GoalNode)
-    {
+    private Node GeneratePath(Node StartNode, Node GoalNode)
+    {   
+
+        Debug.Log("Start Node" + StartNode.position.x + " " + StartNode.position.y);
+        Debug.Log("Goal Node" + GoalNode.position.x + " " + GoalNode.position.y);
+
 
         OpenList = new Dictionary<Vector2Int, Node>();
         ClosedList = new Dictionary<Vector2Int, Node>();
@@ -64,25 +70,48 @@ public class Pathfinder : MonoBehaviour
         while (OpenList.Count != 0)
         {
             CurrentNode = SelectBestNode();
+            Debug.Log("Current Node" + CurrentNode.position.x + " " + CurrentNode.position.y);
             OpenList.Remove(CurrentNode.position);
             Dictionary<Node, int> neighbours = GetNeighbours(CurrentNode);
             foreach (KeyValuePair<Node, int> neighbour in neighbours)
             {
+                Debug.Log("Neighbour " + neighbour.Key.position.x + " " + neighbour.Key.position.y);
                 neighbour.Key.parent = CurrentNode;
-                if (neighbour.Key.position == GoalNode.position)
-                    return;
-                neighbour.Key.G = CurrentNode.G + 10;
-                neighbour.Key.CalculateH(GoalNode);
-                neighbour.Key.CalculateF();
-                if (OpenList.ContainsValue(neighbour.Key) && neighbour.Key.F > OpenList[neighbour.Key.position].F)
-                    continue;
-                if (ClosedList.ContainsValue(neighbour.Key) && neighbour.Key.F > ClosedList[neighbour.Key.position].F)
-                    continue;
+                if (neighbour.Key.position == GoalNode.position){
+                    Debug.Log("Goal");
+                    CurrentNode = neighbour.Key;
+                    return neighbour.Key;
+                }
+                else 
+                {
+                    neighbour.Key.G = CurrentNode.G + 10;
+                    neighbour.Key.CalculateH(GoalNode);
+                    neighbour.Key.CalculateF();
+                }
+
+                if (OpenList.ContainsKey(neighbour.Key.position)){
+                    if(neighbour.Key.F > OpenList[neighbour.Key.position].F)
+                    {
+                        Debug.Log("There's a shorter path for this");
+                        continue;
+                    }
+                }
+                else if (ClosedList.ContainsKey(neighbour.Key.position)){
+                    if(neighbour.Key.F > ClosedList[neighbour.Key.position].F){
+                        Debug.Log("I already came here faster in other time");
+                        continue;
+                    }
+                }
                 else
+                {
+                    Debug.Log("I have to visit this one");
                     OpenList.Add(neighbour.Key.position, neighbour.Key);
+                }
             }
+            Debug.Log("Visited");
             ClosedList.Add(CurrentNode.position, CurrentNode);
         }
+        return new Node(new Vector2Int(0,0));
     }
 
     private Node SelectBestNode()
@@ -121,7 +150,7 @@ public class Pathfinder : MonoBehaviour
         rightN.walkable = !walls.HasTile(new Vector3Int(rightN.position.x, rightN.position.y, 0));
         if (rightN.walkable && !ClosedList.ContainsKey(rightN.position))
             neighbours.Add(rightN, 3);
-        
+
         return neighbours;
     }
 }
