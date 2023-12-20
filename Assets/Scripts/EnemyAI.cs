@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class EnemyAI : MonoBehaviour
                 //GameOver
             }
         }
-    }   
+    }
 
 
     void Chase()
@@ -50,9 +51,17 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("chaseStart");
         Node StartNode = new Node(new Vector2Int((int)transform.position.x, (int)transform.position.y));
         Node GoalNode = new Node(new Vector2Int((int)Player.transform.position.x, (int)Player.transform.position.y));
+        Collider2D col = Physics2D.OverlapPoint(Player.transform.position + Vector3.right);
+        if (Vector2.Distance(StartNode.position, GoalNode.position) >= Mathf.Sqrt(2))
+        {
         Stack<Node> steps = Pathfinder.GetSteps(StartNode, GoalNode);
         Vector2Int nextStep = steps.Pop().position;
         this.transform.position = new Vector3((float)nextStep.x, (float)nextStep.y, 0f);
+        }
+        else
+        {
+            Debug.Log("A tu casa");
+        }
     }
 }
 

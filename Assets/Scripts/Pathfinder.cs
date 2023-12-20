@@ -108,22 +108,22 @@ public class Pathfinder : MonoBehaviour
         Dictionary<Node, int> neighbours = new Dictionary<Node, int>();
 
         Node topN = new Node(new Vector2Int(node.position.x + 1, node.position.y));
-        topN.walkable = !walls.HasTile(new Vector3Int(topN.position.x, topN.position.y, 0));
+        topN.walkable = !walls.HasTile(new Vector3Int(topN.position.x-1, topN.position.y, 0));
         if (topN.walkable && !ClosedList.ContainsKey(topN.position))
             neighbours.Add(topN, 0);
 
         Node bottomN = new Node(new Vector2Int(node.position.x - 1, node.position.y));
-        bottomN.walkable = !walls.HasTile(new Vector3Int(bottomN.position.x, bottomN.position.y, 0));
+        bottomN.walkable = !walls.HasTile(new Vector3Int(bottomN.position.x-1, bottomN.position.y, 0));
         if (bottomN.walkable && !ClosedList.ContainsKey(bottomN.position))
             neighbours.Add(bottomN, 2);
 
         Node leftN = new Node(new Vector2Int(node.position.x, node.position.y - 1));
-        leftN.walkable = !walls.HasTile(new Vector3Int(leftN.position.x, leftN.position.y, 0));
+        leftN.walkable = !walls.HasTile(new Vector3Int(leftN.position.x-1, leftN.position.y, 0));
         if (leftN.walkable && !ClosedList.ContainsKey(leftN.position))
             neighbours.Add(leftN, 1);
 
         Node rightN = new Node(new Vector2Int(node.position.x, node.position.y + 1));
-        rightN.walkable = !walls.HasTile(new Vector3Int(rightN.position.x, rightN.position.y, 0));
+        rightN.walkable = !walls.HasTile(new Vector3Int(rightN.position.x-1, rightN.position.y, 0));
         if (rightN.walkable && !ClosedList.ContainsKey(rightN.position))
             neighbours.Add(rightN, 3);
 
