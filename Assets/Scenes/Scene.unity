@@ -3581,6 +3581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitToIdle: 0
+  canWalk: 0
 --- !u!61 &731830725
 BoxCollider2D:
   m_ObjectHideFlags: 0

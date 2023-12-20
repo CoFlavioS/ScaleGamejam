@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 1fa0a57d75ea7d0439ebe518bf95fa51
+guid: 05a8d65656e0c994388177fc2fb27f52
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7849862365723905421
-    second: BugEnemy_0
-  - first:
-      213: -4780558412798501034
-    second: BugEnemy_1
+      213: 4713567220102137425
+    second: Bola fuego_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -40,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -78,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BugEnemy_0
+      name: Bola fuego_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 95
+        y: 111
+        width: 306
+        height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,29 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 372b15bc4cfaf0390800000000000000
-      internalID: -7849862365723905421
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BugEnemy_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65fd329b37b08adb0800000000000000
-      internalID: -4780558412798501034
+      spriteID: 1560d13c964f96140800000000000000
+      internalID: 4713567220102137425
       vertices: []
       indices: 
       edges: []
@@ -145,16 +121,14 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a7c8666470e392046bcc21cb0f6ae2d0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      BugEnemy_0: -7849862365723905421
-      BugEnemy_1: -4780558412798501034
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
