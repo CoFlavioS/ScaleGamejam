@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460bec5a8ca2aef4fa8c6735ea4c8d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CHASE_RANGE: {x: 16, y: 16}
   repeatRate: 0.2
   Player: {fileID: 0}
 --- !u!114 &4858390627784940677

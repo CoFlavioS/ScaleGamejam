@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
 
     [SerializeField] 
-    Vector2Int CHASE_RANGE;
+    //Vector2Int CHASE_RANGE;
     [Range(0.1f, 1)]
     public float repeatRate;
 
@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     public void Start()
     {
         BoxCollider = GetComponent<BoxCollider2D>();
-        BoxCollider.size = CHASE_RANGE;
+        //BoxCollider.size = CHASE_RANGE;
         Pathfinder = GetComponent<Pathfinder>();
         Chasing = false;
     }
@@ -37,7 +37,8 @@ public class EnemyAI : MonoBehaviour
             if (!Chasing)
             {
                 Chasing = true;
-                BoxCollider.size = new Vector2(1, 1);
+                BoxCollider.size = new Vector2(0.9f,0.9f);
+                BoxCollider.offset = new Vector2(0, 0);
                 InvokeRepeating("Chase", 0f, repeatRate);
             } else {
                 //GameOver
