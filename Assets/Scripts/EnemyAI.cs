@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : Objeto
 {
     private Vector3 lastPosition;
+    public float xInicial;
+    public float yInicial;
+    public Vector2 sizeInicial;
+    public Vector2 offsetInicial;
     [Range(1, 6)] public int waitToIdle;
 
     [SerializeField] 
@@ -23,14 +27,12 @@ public class EnemyAI : MonoBehaviour
     GameObject Player;
 
     private Animator anim;
-    Coroutine active;
 
     public void Start()
     {
         anim = gameObject.GetComponent<Animator>();
 
         BoxCollider = GetComponent<BoxCollider2D>();
-        //BoxCollider.size = CHASE_RANGE;
         Pathfinder = GetComponent<Pathfinder>();
         Chasing = false;
     }
@@ -52,8 +54,6 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
-
-
     void Chase()
     {
         Debug.Log("chaseStart");
@@ -73,49 +73,41 @@ public class EnemyAI : MonoBehaviour
             {
                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BugDer"))
                     anim.SetTrigger("right");
-                BackToIdle();
             }
             else if (direction.x < 0)
             {
                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BugIzq"))
                     anim.SetTrigger("left");
-                BackToIdle();
             }
             else if (direction.y > 0)
             {
                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BugUp"))
                     anim.SetTrigger("up");
-                BackToIdle();
             }
             else if (direction.y < 0)
             {
                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BugDown"))
                     anim.SetTrigger("down");
-                BackToIdle();
             }
 
         }
         else
         {
-            //GameOver
+            CancelInvoke("Chase");
+            Player.GetComponent<PlayerController>().Die();
         }
     }
-
-    private void BackToIdle()
+    public override void Reset()
     {
-        if (active != null)
-        {
-            StopCoroutine(active);
-            //Debug.Log("reset");
-        }
-        active = StartCoroutine(contarTiempoIdle());
+        gameObject.transform.position=new Vector2(xInicial, yInicial);
+        CancelInvoke("Chase");
+        Chasing = false;
+        BoxCollider.size = sizeInicial;
+        BoxCollider.offset = offsetInicial;
     }
-
-    IEnumerator contarTiempoIdle()
+    public void StopInvoke()
     {
-        yield return new WaitForSeconds(3f);
-        anim.SetTrigger("idle");
-        //Debug.Log("Trigger");
+        CancelInvoke("Chase");
     }
 }
 

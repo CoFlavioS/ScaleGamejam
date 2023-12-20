@@ -33,8 +33,9 @@ public class GameController : Singleton<GameController>
                 }
                 sala1[i].Reset();
             }
-            player.transform.position = new Vector2(-11, 4.5f);
+            player.transform.position = new Vector2(-11, 4f);
             player.transform.localScale = new Vector3(1,1,1);
+            player.gameObject.GetComponent<PlayerController>().canWalk = true;
         }
         else if (checkpoint == 2)
         {
@@ -46,8 +47,9 @@ public class GameController : Singleton<GameController>
                 }
                 sala2[i].Reset();
             }
-            player.transform.position = new Vector2(-14, -13.5f);
+            player.transform.position = new Vector2(-14, -14f);
             player.transform.localScale = new Vector3(1, 1, 1);
+            player.gameObject.GetComponent<PlayerController>().canWalk = true;
         }
         else if (checkpoint == 3)
         {
@@ -59,8 +61,9 @@ public class GameController : Singleton<GameController>
                 }
                 sala3[i].Reset();
             }
-            player.transform.position = new Vector2(19, -13.5f);
+            player.transform.position = new Vector2(19, -14f);
             player.transform.localScale = new Vector3(3, 3, 1);
+            player.gameObject.GetComponent<PlayerController>().canWalk = true;
         }
         else if (checkpoint == 4)
         {
@@ -72,8 +75,9 @@ public class GameController : Singleton<GameController>
                 }
                 sala4[i].Reset();
             }
-            player.transform.position = new Vector2(53, -26.5f);
+            player.transform.position = new Vector2(53, -27f);
             player.transform.localScale = new Vector3(3, 3, 1);
+            player.gameObject.GetComponent<PlayerController>().canWalk = true;
         }
         else if (checkpoint == 5)
         {
@@ -86,8 +90,9 @@ public class GameController : Singleton<GameController>
                 }
                 sala5[i].Reset();
             }
-            player.transform.position = new Vector2(85,-31.5f);
+            player.transform.position = new Vector2(85,-32f);
             player.transform.localScale = new Vector3(3, 3, 1);
+            player.gameObject.GetComponent<PlayerController>().canWalk = true;
         }
         else if (checkpoint == 6)
         {
@@ -99,8 +104,9 @@ public class GameController : Singleton<GameController>
                 }
                 sala6[i].Reset();
             }
-            player.transform.position = new Vector2(56,-51.5f);
+            player.transform.position = new Vector2(56,-52f);
             player.transform.localScale = new Vector3(1, 1, 1);
+            player.gameObject.GetComponent<PlayerController>().canWalk = true;
         }     
     }
 }

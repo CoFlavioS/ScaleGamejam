@@ -9,16 +9,20 @@ public class VoidAffected : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if(collision.gameObject.transform.localScale.x < 2)
+            if (collision.gameObject.transform.localScale.x < 2)
             {
-                Debug.Log("Muriste");
+                collision.gameObject.GetComponent<PlayerController>().Die();
             }
         }
         else if (collision.gameObject.name == "Boss")
         {
             Debug.Log("enemigo pisa vacio");
         }
-        else
-            Debug.Log("Enemigo cae");
+        else if (collision.CompareTag("Enemy"))
+        {
+            Debug.Log("Entra");
+            collision.gameObject.GetComponent<EnemyAI>().CancelInvoke();
+            collision.gameObject.SetActive(false);
+        }
     }
 }

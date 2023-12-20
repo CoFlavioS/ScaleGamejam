@@ -180,4 +180,20 @@ public class PlayerController : MonoBehaviour
     {
         return sala;
     }
+    public void Die()
+    {
+        StartCoroutine(ScaleAnim());
+    }
+    IEnumerator ScaleAnim()
+    {
+        canWalk = false;
+        while (this.transform.localScale.x>0)
+        {
+            this.transform.localScale -= (Vector3.right + Vector3.up) * 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        this.transform.localScale = (Vector3.up + Vector3.right) * Mathf.RoundToInt(this.transform.localScale.x);
+        GameController.Instance.ReiniciarSala(GameController.Instance.checkpoint);
+    }
 }
