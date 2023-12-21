@@ -137,10 +137,11 @@ public class PlayerController : MonoBehaviour
         else if(scaleVar == 3)
         {
             int i = -1;
+            Collider2D aux = null;
             Vector2 check;
             Vector2 moveDir = destination - new Vector2(this.transform.position.x, this.transform.position.y);
 
-            while (col == null && i < 2)
+            while (i < 2)
             {
                 if(moveDir.x == 0)
                 {
@@ -150,7 +151,16 @@ public class PlayerController : MonoBehaviour
                 {
                     check = destination + Vector2.up * i + Vector2.right * moveDir.x;
                 }
-                col = Physics2D.OverlapPoint(check);
+                
+                aux = Physics2D.OverlapPoint(check);
+                if(aux != null)
+                {
+                    if (col == null || aux.CompareTag("Wall"))
+                    {
+                        col = aux;
+                    }
+                }
+                
                 if (moveDir.x == 0)
                 {
                     Debug.DrawLine(destination + Vector2.right * i, check, col == null ? Color.green : Color.red, 2);

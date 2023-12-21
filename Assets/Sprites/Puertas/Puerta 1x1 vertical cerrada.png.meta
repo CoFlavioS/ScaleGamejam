@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Puerta 1x1 vertical cerrada_0: 4850334697620385736
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
