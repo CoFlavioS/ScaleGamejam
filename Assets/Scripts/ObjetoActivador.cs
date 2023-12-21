@@ -17,7 +17,14 @@ public class ObjetoActivador : Objeto
     }
     void OnTriggerEnter2D(Collider2D c)
     {
+        this.gameObject.GetComponent<AudioSource>().Play();
         oA.Activar();
+        StartCoroutine(PlaySound());
+    }
+
+    IEnumerator PlaySound()
+    {
+        yield return new WaitForSeconds(1.5f);
         if (gameObject.tag == "Key")
         {
             gameObject.SetActive(false);
@@ -27,6 +34,7 @@ public class ObjetoActivador : Objeto
             //Cambiar al sprite del botón pulsado
         }
     }
+
     public override void Reset()
     {
         if (gameObject.tag == "Key")

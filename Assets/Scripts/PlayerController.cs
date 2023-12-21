@@ -194,6 +194,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Die()
     {
+        this.gameObject.GetComponent<AudioSource>().Play();
         StartCoroutine(ScaleAnim());
     }
     IEnumerator ScaleAnim()

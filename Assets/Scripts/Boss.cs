@@ -28,6 +28,7 @@ public class Boss : Objeto
         while (true)
         {
             yield return new WaitForSeconds(tDisparo);
+            this.gameObject.GetComponent<AudioSource>().Play();
             PiumAJugador();
         }
     }

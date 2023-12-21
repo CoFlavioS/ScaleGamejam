@@ -10,6 +10,7 @@ public class SizeChanger : Objeto
     {
         if (collision.CompareTag("Player"))
         {
+            this.gameObject.GetComponent<AudioSource>().Play();
             if (collision.gameObject.transform.localScale.x == 3 && !grow)
             {
                 ChangeSize(collision.transform);
