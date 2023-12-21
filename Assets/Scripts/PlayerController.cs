@@ -55,14 +55,14 @@ public class PlayerController : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Z) && this.transform.localScale.x < 3)
+            /*if (Input.GetKeyDown(KeyCode.Z) && this.transform.localScale.x < 3)
             {
                 ChangeSize(2);
             }
             else if (Input.GetKeyDown(KeyCode.X) && this.transform.localScale.x > 1)
             {
                 ChangeSize(-2);
-            }
+            }*/
         }
 
         if (moveToDirection != Vector2Int.zero)
@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
         if(active != null)
         {
             StopCoroutine(active);
-            //Debug.Log("reset");
         }
         active = StartCoroutine(contarTiempoIdle());
     }
@@ -96,10 +95,9 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         anim.SetTrigger("idle");
-        //Debug.Log("Trigger");
     }
 
-    void ChangeSize(int sizeVar)
+    /*void ChangeSize(int sizeVar)
     {
         Collider2D col = null;
 
@@ -125,7 +123,7 @@ public class PlayerController : MonoBehaviour
         }
 
         this.transform.localScale += (Vector3.right * sizeVar + Vector3.up * sizeVar);
-    }
+    }*/
 
     Collider2D CanMove(Vector2 destination, int scaleVar)
     {
@@ -172,8 +170,13 @@ public class PlayerController : MonoBehaviour
         if (collider.gameObject.tag == "Checkpoint")
         {
             UnityEngine.Debug.Log("Nuevo checkpoint");
-            sala++;
+            sala = int.Parse(collider.gameObject.name);
             collider.gameObject.SetActive(false);
+        }
+        else if (collider.gameObject.tag == "Bullet")
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            Die();
         }
     }
     public int GetSala()
@@ -194,6 +197,7 @@ public class PlayerController : MonoBehaviour
         }
 
         this.transform.localScale = (Vector3.up + Vector3.right) * Mathf.RoundToInt(this.transform.localScale.x);
+        GetComponent<BoxCollider2D>().enabled = true;
         GameController.Instance.ReiniciarSala(GameController.Instance.checkpoint);
     }
 }

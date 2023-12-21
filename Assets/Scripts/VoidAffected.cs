@@ -16,11 +16,14 @@ public class VoidAffected : MonoBehaviour
         }
         else if (collision.gameObject.name == "Boss")
         {
-            Debug.Log("enemigo pisa vacio");
+            collision.gameObject.GetComponent<Boss>().IncreaseVoid();
         }
         else if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("Entra");
+            if (collision.gameObject.GetComponent<EnemyAI>().llave!=null)
+            {
+                collision.gameObject.GetComponent<EnemyAI>().llave.gameObject.SetActive(true);
+            }
             collision.gameObject.GetComponent<EnemyAI>().CancelInvoke();
             collision.gameObject.SetActive(false);
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2162997511267571734}
   - component: {fileID: 6108130374006714098}
   - component: {fileID: -7310319964924122208}
+  - component: {fileID: 3080324094601566747}
   m_Layer: 0
   m_Name: Trampa
   m_TagString: Void
@@ -146,3 +147,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3080324094601566747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077042226875784766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dde7fd73c57fc4439cf79471e396c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

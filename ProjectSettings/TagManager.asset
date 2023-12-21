@@ -11,6 +11,7 @@ TagManager:
   - Key
   - Checkpoint
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class EnemyAI : Objeto
     public float yInicial;
     public Vector2 sizeInicial;
     public Vector2 offsetInicial;
+    public ObjetoActivador llave;
     [Range(1, 6)] public int waitToIdle;
 
     [SerializeField] 
